@@ -7,7 +7,7 @@ from django.db.models import Q
 class Profile(models.Model):
     slug = models.SlugField()
     username = models.CharField(unique=True, max_length=60)
-    email = models.EmailField(max_length=50, unique=True)
+    email = models.EmailField(max_length=50, primary_key=True)
     phone = models.IntegerField(unique=True)
     address = models.TextField()
 
@@ -122,7 +122,7 @@ class Book(models.Model):
         verbose_name='Book'
         unique_together = ('author', 'title', 'date_of_pub')
 
-    def publisher_random_data(self):
+    def book_random_data(self):
         random_titles = ['Alchemy', 'Nature', 'Gandhi', 'PM']
         auth=list(Author.objects.all())
         p = list(Publisher.objects.all())
